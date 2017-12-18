@@ -1,0 +1,29 @@
+﻿<Page x:Class="Lototron.PageSelect"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+     mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+	  Title="PageSelect" Background="{StaticResource FormStartBackground}" 
+      Height="Auto" Width="Auto"
+      Loaded="PageLoaded" Unloaded="PageUnloaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="270"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Button Grid.Row="1" Name="ButtonBal" Style="{StaticResource BalButtonStyle}" Click="ButtonBal_Click"></Button>
+        <Image Grid.Row="2" Name="Line1" Height="2" Width="498" HorizontalAlignment="Left" Source="{StaticResource LineHr}" Margin="88,0"/>
+        <Button Grid.Row="3" Name="ButtonPul" Style="{StaticResource PulButtonStyle}" Click="ButtonPul_Click"></Button>
+        <Image Grid.Row="4" Name="Line2" Height="2" Width="498" HorizontalAlignment="Left" Source="{StaticResource LineHr}" Margin="88,0"/>
+        <Button Grid.Row="5" Name="ButtonSeyahet" Style="{StaticResource SeyahetButtonStyle}" Click="ButtonSeyahet_Click"></Button>        
+    </Grid>
+</Page>

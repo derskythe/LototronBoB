@@ -1,0 +1,9 @@
+﻿<NavigationWindow x:Class="Lototron.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Bank of Baku Lottery"
+                  WindowStyle="None" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
+                  Source="PageStart.xaml" Loaded="NavigationWindowLoaded" Closing="NavigationWindowClosing" Width="1600" Height="900">
+    <!--WindowStyle="None" ResizeMode="NoResize"-->
+</NavigationWindow>

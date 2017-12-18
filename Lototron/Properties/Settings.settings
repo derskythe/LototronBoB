@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Lototron.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MaxUsersBonus" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">107106</Value>
+    </Setting>
+    <Setting Name="MinUsersBonus" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MaxUsersSilver" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">51076</Value>
+    </Setting>
+    <Setting Name="MinUsersSilver" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="MaxUsersGold" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">88975</Value>
+    </Setting>
+    <Setting Name="MinUsersGold" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">51077</Value>
+    </Setting>
+    <Setting Name="MaxUsersBrilliant" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">107106</Value>
+    </Setting>
+    <Setting Name="MinUsersBrilliant" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">88976</Value>
+    </Setting>
+    <Setting Name="DbPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pan_db.s3db</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

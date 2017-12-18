@@ -1,0 +1,72 @@
+﻿<Page x:Class="Lototron.PageResult"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+	  Title="PageStart" Background="{StaticResource FormResultBackground}" 
+      Height="Auto" Width="Auto"
+      Loaded="PageLoaded" Unloaded="PageUnloaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="105" />
+            <RowDefinition Height="187" />
+        </Grid.RowDefinitions>
+
+        <!--<Rectangle Grid.Row="0" Fill="{StaticResource ResultTitleBackground}" />-->
+        <DockPanel Grid.Row="0">
+            <Image Name="TypeLogo" Height="Auto" Width="Auto" Source="{StaticResource IconBal}" Margin="82,20,10,10"/>
+            <Label Name="TypeName" Content="BAL" Style="{StaticResource BigLabelStyle}" />            
+        </DockPanel>
+
+        <Label Name="OneResult" Grid.Row="1" Style="{StaticResource ResultBigLabelStyle}" Content="0000000000" Visibility="Collapsed"></Label>
+        <UniformGrid Name="Grid" Columns="5" Grid.Row="1" VerticalAlignment="Center">
+            <!--<Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            
+            --><!-- --><!--
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            --><!-- --><!--
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>
+            <Label Style="{StaticResource ResultLabelStyle}" Content="0000000000"></Label>-->
+        </UniformGrid>
+        
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,75,0">
+            <Button Name="ButtonNavPrev" Style="{StaticResource ResultNavButtonStylePrev}" Click="NavPrev_Click" IsEnabled="false"></Button>
+            <StackPanel Name="StackPages" Orientation="Horizontal" Visibility="Collapsed">
+                <Label Style="{StaticResource PageNumberSelectedLabelStyle}" Content="1"></Label>
+                <Label Style="{StaticResource PageNumberLabelStyle}" Content="2"></Label>
+                <Label Style="{StaticResource PageNumberLabelStyle}" Content="3"></Label>
+                <Label Style="{StaticResource PageNumberLabelStyle}" Content="4"></Label>
+                <Label Style="{StaticResource PageNumberLabelStyle}" Content="5"></Label>
+            </StackPanel>
+            <Button Name="ButtonNavNext" Style="{StaticResource ResultNavButtonStyleNext}" Margin="10,10,10,10" Click="NavNext_Click"></Button>
+        </StackPanel>
+
+        <Button Grid.Row="3" Name="ButtonHome" Style="{StaticResource HomeButtonStyle}" Click="ButtonHomeClick" />
+    </Grid>
+</Page>

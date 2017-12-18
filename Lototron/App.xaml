@@ -1,0 +1,1911 @@
+﻿<Application x:Class="Lototron.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <!--<ResourceDictionary x:Key="DefaultDictionary">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/PresentationFramework.Aero;V4.0.0.0;31bf3856ad364e35;component\themes/aero.normalcolor.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>-->
+
+        <BitmapImage x:Key="LogoSource" UriSource="Resources/logo.png" />
+
+        <BitmapImage x:Key="IconBonus" UriSource="Resources/icon_bonus.png" />
+        <BitmapImage x:Key="IconSilver" UriSource="Resources/icon_silver.png" />
+        <BitmapImage x:Key="IconGold" UriSource="Resources/icon_gold.png" />
+        <BitmapImage x:Key="IconBrilliant" UriSource="Resources/icon_brilliant.png" />
+        <BitmapImage x:Key="IconPul" UriSource="Resources/icon_pul.png" />
+        <BitmapImage x:Key="IconSeyahet" UriSource="Resources/icon_seyahet.png" />
+        <BitmapImage x:Key="IconBal" UriSource="Resources/icon_bal.png" />
+
+        <Style x:Key="SelectScreenButtons" TargetType="Button">
+            <Setter Property="Foreground" Value="Transparent"></Setter>
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Margin" Value="88,30,0,30" />
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        </Style>
+
+        <Style x:Key="LotteryTypeButtons" TargetType="Button">
+            <Setter Property="Foreground" Value="Transparent"></Setter>
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="112"/>
+            <Setter Property="Height" Value="64"/>
+            <Setter Property="Margin" Value="0,0,30,0"></Setter>
+        </Style>
+
+        <Style x:Key="StartStopButtons" TargetType="Button">
+            <Setter Property="Foreground" Value="Transparent"></Setter>
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="220"/>
+            <Setter Property="Height" Value="66"/>
+            <Setter Property="Margin" Value="0,0,30,0"></Setter>
+        </Style>
+
+        <Style x:Key="MainButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\f1.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\f2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\f2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="DarkGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MainComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\pvb.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <SolidColorBrush x:Key="ListBorder" Color="#828790"/>
+        <Style x:Key="MainListViewStyle" TargetType="{x:Type ListBox}">
+            <Setter Property="Margin" Value="10,10,10,10" />
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="24" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+            <Setter Property="ScrollViewer.CanContentScroll" Value="true"/>
+            <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Grid>
+                            <Rectangle RadiusX="10" RadiusY="10" Opacity="1">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="Resources\pvb.png"/>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <Border CornerRadius="10" x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="1" SnapsToDevicePixels="true">
+                                <ScrollViewer Focusable="false" Padding="{TemplateBinding Padding}" Template="{DynamicResource ScrollViewerControlTemplate1}">
+                                    <ItemsPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                </ScrollViewer>
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsGrouping" Value="true">
+                                <Setter Property="ScrollViewer.CanContentScroll" Value="false"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="ScrollViewerControlTemplate1" TargetType="{x:Type ScrollViewer}">
+            <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" CanHorizontallyScroll="False" CanVerticallyScroll="False" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="0" Margin="{TemplateBinding Padding}" />
+                <ScrollBar x:Name="PART_VerticalScrollBar" AutomationProperties.AutomationId="VerticalScrollBar" Cursor="Arrow" Grid.Column="1" Maximum="{TemplateBinding ScrollableHeight}" Minimum="0" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" Style="{DynamicResource ScrollBarStyle1}"/>
+            </Grid>
+        </ControlTemplate>
+        <LinearGradientBrush x:Key="VerticalScrollBarBackground" EndPoint="1,0" StartPoint="0,0">
+            <GradientStop Color="#E1E1E1" Offset="0"/>
+            <GradientStop Color="#EDEDED" Offset="0.20"/>
+            <GradientStop Color="#EDEDED" Offset="0.80"/>
+            <GradientStop Color="#E3E3E3" Offset="1"/>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="ResultTitleBackground" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#0F7792" Offset="0"></GradientStop>
+            <GradientStop Color="#1991AE" Offset="0.5"></GradientStop>
+            <GradientStop Color="#24AECC" Offset="1"></GradientStop>
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="ResultBackground" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#127E99" Offset="0"></GradientStop>
+            <GradientStop Color="#1991AD" Offset="0.5"></GradientStop>
+            <GradientStop Color="#24AFCD" Offset="1"></GradientStop>
+        </LinearGradientBrush>
+
+        <Style x:Key="ResultRectangle" TargetType="{x:Type Rectangle}">
+            <Setter Property="Width" Value="897"></Setter>
+            <Setter Property="Height" Value="593"></Setter>
+            <Setter Property="Fill">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\blue_sq.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <SolidColorBrush x:Key="ScrollBarDisabledBackground" Color="#F4F4F4"/>
+
+        <Style x:Key="ScrollBarButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="IsTabStop" Value="false"/>
+        </Style>
+
+        <Style x:Key="VerticalScrollBarPageButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Rectangle Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Thumb}">
+                        <Rectangle Height="25" Width="8" Fill="White" RadiusX="5" RadiusY="5">
+                            <Rectangle.Effect>
+                                <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="White" />
+                            </Rectangle.Effect>
+                        </Rectangle>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <LinearGradientBrush x:Key="HorizontalScrollBarBackground" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#E1E1E1" Offset="0"/>
+            <GradientStop Color="#EDEDED" Offset="0.20"/>
+            <GradientStop Color="#EDEDED" Offset="0.80"/>
+            <GradientStop Color="#E3E3E3" Offset="1"/>
+        </LinearGradientBrush>
+        <Style x:Key="HorizontalScrollBarPageButton" TargetType="{x:Type RepeatButton}">
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="IsTabStop" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type RepeatButton}">
+                        <Rectangle Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ScrollBarStyle1" TargetType="{x:Type ScrollBar}">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+            <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="Width" Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"/>
+            <Setter Property="MinWidth" Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ScrollBar}">
+                        <Grid x:Name="Bg" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <Border Width="1" Background="#FFFFFF" HorizontalAlignment="Center"/>
+                            <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}">
+
+                                <Track.Thumb>
+                                    <Thumb Style="{StaticResource ScrollBarThumb}" />
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="Bg" Value="{StaticResource ScrollBarDisabledBackground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="MinWidth" Value="0"/>
+                    <Setter Property="Height" Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}"/>
+                    <Setter Property="MinHeight" Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}"/>
+                    <Setter Property="Background" Value="{StaticResource HorizontalScrollBarBackground}"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                <Grid x:Name="Bg" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition MaxWidth="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}}"/>
+                                        <ColumnDefinition Width="0.00001*"/>
+                                        <ColumnDefinition MaxWidth="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}}"/>
+                                    </Grid.ColumnDefinitions>
+                                    <RepeatButton Command="{x:Static ScrollBar.LineLeftCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Style="{StaticResource ScrollBarButton}" />
+                                    <Track x:Name="PART_Track" Grid.Column="1" IsEnabled="{TemplateBinding IsMouseOver}">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}" Style="{StaticResource HorizontalScrollBarPageButton}"/>
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}" Style="{StaticResource HorizontalScrollBarPageButton}"/>
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <Thumb Style="{StaticResource ScrollBarThumb}" />
+                                        </Track.Thumb>
+                                    </Track>
+                                    <RepeatButton Grid.Column="2" Command="{x:Static ScrollBar.LineRightCommand}" IsEnabled="{TemplateBinding IsMouseOver}" Style="{StaticResource ScrollBarButton}" />
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsEnabled" Value="false">
+                                        <Setter Property="Background" TargetName="Bg" Value="{StaticResource ScrollBarDisabledBackground}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+            <Setter Property="Padding" Value="2,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="true"/>
+                                    <Condition Property="Selector.IsSelectionActive" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+                            </MultiTrigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MainTextStyle" TargetType="TextBox">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="MinHeight" Value="23"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+            <Setter Property="Width" Value="350" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <!--<Setter Property="Focusable" Value="False"></Setter>-->
+            <Setter Property="Cursor" Value="None"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\pvb.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="LottoTextStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="0,5,10,0"></Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="36" />
+            <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#ProximaNovaRg" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="MinHeight" Value="23"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+            <Setter Property="Width" Value="90" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="None"></Setter>
+            <Setter Property="Background" Value="#21A5C3"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Rectangle Height="54" Width="97">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="#21A5C3" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <!--<Polygon Stroke="#21A5C3" StrokeThickness="1" Fill="#21A5C3">                                
+                                <Polygon.Points>
+                                    <Point X="0" Y="25" />
+                                    <Point X="20" Y="0" />
+                                    <Point X="70" Y="0" />
+                                    <Point X="90" Y="25" />
+                                    <Point X="70" Y="50" />
+                                    <Point X="20" Y="50" />
+                                </Polygon.Points>
+                            </Polygon>-->
+                            <!-- The implementation places the Content into the ScrollViewer. It must be named PART_ContentHost for the control to function -->
+                            <ScrollViewer 
+                                x:Name="PART_ContentHost" 
+                                Background="Transparent"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="LottoTextResultStyle" TargetType="TextBox">
+            <Setter Property="Margin" Value="0,5,0,0"></Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="36" />
+            <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#Proxima Nova Rg" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="50"></Setter>
+            <Setter Property="MinHeight" Value="23"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Width" Value="300" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="None"></Setter>
+            <Setter Property="Background" Value="#21A5C3"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <Rectangle Height="54" Width="290">
+                                <Rectangle.Fill>
+                                    <SolidColorBrush Color="#21A5C3" />
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <!--<Polygon Stroke="#21A5C3" StrokeThickness="1" Fill="#21A5C3">
+                                <Polygon.Points>
+                                    <Point X="0" Y="25" />
+                                    <Point X="25" Y="0" />
+                                    <Point X="150" Y="0" />
+                                    <Point X="175" Y="25" />
+                                    <Point X="150" Y="50" />
+                                    <Point X="25" Y="50" />
+                                </Polygon.Points>
+                            </Polygon>-->
+                            <!-- The implementation places the Content into the ScrollViewer. It must be named PART_ContentHost for the control to function -->
+                            <ScrollViewer 
+                                x:Name="PART_ContentHost" 
+                                Background="Transparent"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ResultLabelStyle" TargetType="Label">
+            <Setter Property="Margin" Value="30,20"></Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="36" />
+            <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#ProximaNovaRg" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="74"></Setter>
+            <Setter Property="MinHeight" Value="74"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Width" Value="254" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="None"></Setter>
+            <Setter Property="Background" Value="#1C5465"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="4" Direction="330" Color="Black" Opacity="0.5" BlurRadius="4"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                BorderThickness="{TemplateBinding BorderThickness}" 
+                Background="{TemplateBinding Background}" 
+                Padding="{TemplateBinding Padding}" 
+                SnapsToDevicePixels="true" 
+                CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ResultBigLabelStyle" TargetType="Label">
+            <Setter Property="Margin" Value="30,20"></Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="115" />
+            <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#ProximaNovaRg" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="211"></Setter>
+            <Setter Property="MinHeight" Value="211"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Width" Value="731" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="None"></Setter>
+            <Setter Property="Background" Value="#1C5465"></Setter>
+            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="4" Direction="330" Color="Black" Opacity="0.5" BlurRadius="4"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Label}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" 
+                BorderThickness="{TemplateBinding BorderThickness}" 
+                Background="{TemplateBinding Background}" 
+                Padding="{TemplateBinding Padding}" 
+                SnapsToDevicePixels="true" 
+                CornerRadius="7">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+
+        <Style x:Key="PageNumberLabelStyle" TargetType="Label">
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="Tahoma" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="36"></Setter>
+            <Setter Property="MinHeight" Value="23"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Width" Value="36" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="#1C5465"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="PageNumberSelectedLabelStyle" TargetType="Label">
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontFamily" Value="Tahoma" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="36"></Setter>
+            <Setter Property="MinHeight" Value="23"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Width" Value="36" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="#DA2983"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="MainTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="28" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Height" Value="100"></Setter>
+            <Setter Property="Width" Value="180"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+        </Style>
+
+        <Style x:Key="MainLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        </Style>
+
+        <Style x:Key="ComissionLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="DarkRed" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        </Style>
+
+
+
+        <Style x:Key="BigLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="52" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="FontFamily" Value="pack://application:,,,/Fonts/#ProximaNovaRg" />
+            <Setter Property="Margin" Value="20,20,10,10" />
+        </Style>
+
+        <Style x:Key="BigTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="50" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+
+        <Style x:Key="BlindLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="100" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        </Style>
+
+        <Style x:Key="ProgressBarStyle" TargetType="ProgressBar">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Height" Value="23"></Setter>
+            <Setter Property="Margin" Value="40,50"></Setter>
+            <Setter Property="IsIndeterminate" Value="True"></Setter>
+        </Style>
+
+        <Style x:Key="MenuButtonStyle" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+            <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
+            <Setter Property="MaxHeight" Value="105"></Setter>
+            <Setter Property="MinHeight" Value="105"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\fb1.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Margin="20" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\fb2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\fb2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="DarkGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PaymentServiceButtonStyle" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+            <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
+            <Setter Property="MaxHeight" Value="120"></Setter>
+            <Setter Property="MinHeight" Value="120"></Setter>
+            <Setter Property="Width" Value="200"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\fk1.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\fk2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\fk2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="DarkGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SmallMenuButtonStyle" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+            <Setter Property="Margin" Value="10,5"></Setter>
+            <Setter Property="MaxHeight" Value="95"></Setter>
+            <Setter Property="MinHeight" Value="95"></Setter>
+            <Setter Property="FontSize" Value="35" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\fb1.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\f2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\f2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="DarkGray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="NumpadButtonStyle" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+            <Setter Property="Margin" Value="5, 5, 5, 5"></Setter>
+            <Setter Property="MaxHeight" Value="78"/>
+            <Setter Property="MinHeight" Value="78"/>
+        </Style>
+
+        <Style x:Key="NumpadButtonStyle2" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+            <Setter Property="Margin" Value="1, 1, 1, 1"></Setter>
+            <Setter Property="MaxHeight" Value="78"/>
+            <Setter Property="MinHeight" Value="78"/>
+        </Style>
+
+        <Style x:Key="NumpadBackSpaceButtonStyle" TargetType="Button" BasedOn="{StaticResource NumpadButtonStyle}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <Image Source="Resources\backspace32.png" Width="32" Height="32" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\f2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenterDockPanel" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\f2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="NavButtonStyle" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+            <Setter Property="Margin" Value="10, 10, 10, 10"/>
+            <Setter Property="MaxHeight" Value="78"/>
+            <Setter Property="MinHeight" Value="78"/>
+            <Setter Property="Width" Value="320"/>
+        </Style>
+
+        <Style x:Key="ServiceNavButtonStyleBack" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+            <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
+            <Setter Property="Height" Value="78"></Setter>
+            <Setter Property="Width" Value="78"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <Image Source="Resources/back.png" Width="40" Height="39" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\f2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenterDockPanel" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\f2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ServiceNavButtonStyleNext" TargetType="Button" BasedOn="{StaticResource MainButtonStyle}">
+            <Setter Property="Margin" Value="10, 10, 10, 10"></Setter>
+            <Setter Property="Height" Value="78"></Setter>
+            <Setter Property="Width" Value="78"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <Image Source="Resources/next.png" Width="40" Height="39" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\f2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenterDockPanel" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\f2.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="HomeButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="Transparent"></Setter>
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="159"/>
+            <Setter Property="Height" Value="103"/>
+            <Setter Property="Margin" Value="75,10"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\home.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\home_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\home_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--<ControlTemplate x:Key="HomeButtonTemplate">
+            <Image Source="Resources\1365266245_home.png" Width="32" Height="32" Stretch="None" StretchDirection="Both"></Image>
+        </ControlTemplate>-->
+
+
+        <ImageBrush x:Key="FormBlueBarGradientBrush" ImageSource="Resources\fon.png" />
+        <ImageBrush x:Key="FormStartBackground" ImageSource="Resources\Background\bg_01.png" />
+        <ImageBrush x:Key="FormGameBackground" ImageSource="Resources\Background\bg_02.png" />
+        <ImageBrush x:Key="FormResultBackground" ImageSource="Resources\Background\bg_03.png" />
+        <ImageBrush x:Key="ResultFrameBackground" ImageSource="Resources\blue_sq.png" />
+
+        <Style x:Key="ResultFrameGrid" TargetType="Grid">
+            <Setter Property="Width" Value="897"></Setter>
+            <Setter Property="Height" Value="593"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\blue_sq.png"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SmallLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        </Style>
+
+        <Style x:Key="StartButtonStyle" TargetType="Button" BasedOn="{StaticResource StartStopButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\start.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\start_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\start_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="StopButtonStyle" TargetType="Button" BasedOn="{StaticResource StartStopButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\stop.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\stop_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\stop_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="OneButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="Transparent"></Setter>
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="82"/>
+            <Setter Property="Height" Value="56"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\1.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\1_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\1_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="FiveButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="Transparent"></Setter>
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="82"/>
+            <Setter Property="Height" Value="56"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\5.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\5_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\5_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ThreeButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="Transparent"></Setter>
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="82"/>
+            <Setter Property="Height" Value="56"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\3.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\3_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\3_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TwoHundredButtonStyle" TargetType="Button" BasedOn="{StaticResource LotteryTypeButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\200.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\200_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\200_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="HundredButtonStyle" TargetType="Button" BasedOn="{StaticResource LotteryTypeButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\100.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\100_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\100_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="StartLotteryButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="Transparent"></Setter>
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="322" />
+            <Setter Property="Height" Value="92" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\begin.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\begin_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\begin_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ResultNavButtonStylePrev" TargetType="Button">
+            <Setter Property="Foreground" Value="Transparent"></Setter>
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="61"></Setter>
+            <Setter Property="Height" Value="61"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources/Buttons/prev.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/Buttons/prev_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/Buttons/prev_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ResultNavButtonStyleNext" TargetType="Button">
+            <Setter Property="Foreground" Value="Transparent"></Setter>
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="61"></Setter>
+            <Setter Property="Height" Value="61"></Setter>
+            <Setter Property="Margin" Value="10"></Setter>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources/Buttons/next.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/Buttons/next_click.png" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources/Buttons/next_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>        
+
+        <Style x:Key="BonusButtonButtonStyle" TargetType="Button" BasedOn="{StaticResource SelectScreenButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\bonus.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\bonus_on_maus.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\bonus_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\bonus_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SilverButtonButtonStyle" TargetType="Button" BasedOn="{StaticResource SelectScreenButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\gumush.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\gumush_on_maus.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\gumush_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\gumush_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="GoldButtonButtonStyle" TargetType="Button" BasedOn="{StaticResource SelectScreenButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\qizil.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\qizil_on_maus.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\qizil_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\qizil_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="BrilliantButtonButtonStyle" TargetType="Button" BasedOn="{StaticResource SelectScreenButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\brilliant.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\brilliant_on_maus.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\brilliant_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\brilliant_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- New Stylo -->
+        <!-- TODO: -->
+        <BitmapImage x:Key="LineHr" UriSource="Resources/line.png" />
+        <BitmapImage x:Key="HeaderBal" UriSource="Resources/Buttons/menu_bal.png" />
+        <BitmapImage x:Key="HeaderPul" UriSource="Resources/Buttons/menu_pul.png" />
+        <BitmapImage x:Key="HeaderSeyahet" UriSource="Resources/Buttons/menu_seyahet.png" />
+
+        <Style x:Key="BalButtonStyle" TargetType="Button" BasedOn="{StaticResource SelectScreenButtons}">
+            <Setter Property="Width" Value="182" />
+            <Setter Property="Height" Value="66" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\menu_bal.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\menu_bal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\menu_bal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\menu_bal.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="PulButtonStyle" TargetType="Button" BasedOn="{StaticResource SelectScreenButtons}">
+            <Setter Property="Width" Value="466" />
+            <Setter Property="Height" Value="66" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\menu_pul.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\menu_pul.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\menu_pul.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\menu_pul.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SeyahetButtonStyle" TargetType="Button" BasedOn="{StaticResource SelectScreenButtons}">
+            <Setter Property="Width" Value="573" />
+            <Setter Property="Height" Value="66" />
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\menu_seyahet.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\menu_seyahet.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\menu_seyahet.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\menu_seyahet.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TenButtonStyle" TargetType="Button" BasedOn="{StaticResource LotteryTypeButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\10.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\10_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\10_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TwentyButtonStyle" TargetType="Button" BasedOn="{StaticResource LotteryTypeButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\20.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\20_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\20_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="FiftyButtonStyle" TargetType="Button" BasedOn="{StaticResource LotteryTypeButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\50.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\50_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\50_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="ThirtyButtonStyle" TargetType="Button" BasedOn="{StaticResource LotteryTypeButtons}">
+            <Setter Property="Background">
+                <Setter.Value>
+                    <ImageBrush ImageSource="Resources\Buttons\30.png"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" ClipToBounds="True">
+                            <Rectangle x:Name="innerRectangle" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Stroke="Transparent" Fill="{TemplateBinding Background}" />
+
+                            <DockPanel Name="myContentPresenterDockPanel">
+                                <ContentPresenter x:Name="myContentPresenter" Content="{TemplateBinding  Content}" TextBlock.Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </DockPanel>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\30_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Margin" TargetName="myContentPresenter" Value="0,5,0,0" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Rectangle.Fill" TargetName="innerRectangle">
+                                    <Setter.Value>
+                                        <ImageBrush ImageSource="Resources\Buttons\30_click.png"/>
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="TextBlock.Foreground" TargetName="myContentPresenter" Value="Transparent"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>
